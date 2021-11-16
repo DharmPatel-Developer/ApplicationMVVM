@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="addBooks">Books</string>
+    <string name="downloadPDF">Download PDF</string>
+    <string name="randomList">Random List</string>
+    <string name="name">Name</string>
+    <string name="mobileNo">Mobile No</string>
+    <string name="save">Save</string>
+    <string name="bookName">Book Name</string>
+    <string name="delete">Delete</string>
+
+    <string-array name="bookArray">
+        <item>Select Book</item>
+        <item>Eat That Frog</item>
+        <item>Secret</item>
+        <item>In Cold Blood</item>
+        <item>Mortal</item>
+    </string-array>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navAddBook"
+    app:startDestination="@id/homeBookFragment">
+
+    <fragment
+        android:id="@+id/homeBookFragment"
+        android:name="com.qfc.applicationmvvm.addbook.ui.HomeBookFragment"
+        android:label="Book List"
+        tools:layout="@layout/fragment_home_book" >
+        <action
+            android:id="@+id/actionAddBook"
+            app:destination="@id/addBookFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBookFragment"
+        android:name="com.qfc.applicationmvvm.addbook.ui.AddBookFragment"
+        android:label="Add Book"
+        tools:layout="@layout/fragment_add_book" >
+        <action
+            android:id="@+id/actionSaveBook"
+            app:destination="@id/homeBookFragment" />
+        <argument
+            app:argType="com.qfc.applicationmvvm.addbook.db.Book"
+            android:name="Book"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
+</navigation>

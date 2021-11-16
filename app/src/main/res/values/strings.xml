@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ApplicationMVVM</string>
+    <string name="addBooks">Add Books</string>
+    <string name="downloadPDF">Download PDF</string>
+    <string name="randomList">Random List</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="mobileNo">Mobile No</string>
+    <string name="save">Save</string>
+    <string name="bookName">Book Name</string>
+    <string name="delete">Delete</string>
+
+    <string-array name="bookArray">
+        <item>Select Book</item>
+        <item>Eat That Frog</item>
+        <item>Secret</item>
+        <item>In Cold Blood</item>
+        <item>Mortal</item>
+    </string-array>
+</resources>
