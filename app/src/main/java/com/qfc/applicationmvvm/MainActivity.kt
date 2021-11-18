@@ -122,10 +122,6 @@ class MainActivity : AppCompatActivity(),EasyPermissions.PermissionCallbacks {
         startActivity(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        unregisterReceiver(onComplete)
-    }
 
     override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {
        // downloadFile()
