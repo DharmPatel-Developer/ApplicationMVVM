@@ -1,29 +1,27 @@
 package com.qfc.applicationmvvm.addbook.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.qfc.applicationmvvm.addbook.db.BookDatabase
-import com.qfc.applicationmvvm.addbook.ui.HomeBookFragmentDirections.*
+import com.qfc.applicationmvvm.addbook.viewmodel.BookViewModel
 import com.qfc.applicationmvvm.databinding.FragmentHomeBookBinding
-import kotlinx.coroutines.launch
+import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeBookFragment : BaseFragment() {
 
     private lateinit var binding:FragmentHomeBookBinding
+    private val viewModel: BookViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentHomeBookBinding.inflate(inflater)
-        return binding.root//inflater.inflate(R.layout.fragment_home_book, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -32,15 +30,8 @@ class HomeBookFragment : BaseFragment() {
         binding.viewBook.layoutManager = LinearLayoutManager(requireContext())
 
 
-        launch {
-            context?.let {
-                val books = BookDatabase(it).getBookDao().getAllBook()
-                binding.viewBook.adapter = BooksAdapter(books)
-
-
-            }
-        }
-
+        viewModel.getAllBook().observe(viewLifecycleOwner,
+            { bookList -> binding.viewBook.adapter = BooksAdapter(bookList) })
 
         binding.addBookButton.setOnClickListener {
             println("Clicked")

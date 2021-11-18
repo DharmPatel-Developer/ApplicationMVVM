@@ -28,6 +28,8 @@ class BooksAdapter(private val books: List<Book>): RecyclerView.Adapter<BooksAda
          binding.itemBookName.text = books[position].bookName
 
          binding.root.setOnClickListener {
+             print("books ${books[position].name} position")
+
              val action = HomeBookFragmentDirections.actionAddBook()
              action.book = books[position]
              Navigation.findNavController(it).navigate(action)

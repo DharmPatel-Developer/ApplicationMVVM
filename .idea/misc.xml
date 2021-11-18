@@ -4,11 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/activity_add_book.xml" value="0.16576086956521738" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/activity_list.xml" value="0.15760869565217392" />
         <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/bookitemlayout.xml" value="0.15760869565217392" />
         <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/boolayout.xml" value="0.16168478260869565" />
         <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/fragment_add_book.xml" value="0.16666666666666666" />
         <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/fragment_home_book.xml" value="0.16576086956521738" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/todo_item.xml" value="0.1" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/todoitem.xml" value="0.15760869565217392" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/todoitemlayout.xml" value="0.3333333333333333" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/layout/todos_fragment.xml" value="0.15760869565217392" />
         <entry key="..\:/ApplicationMVVM/app/src/main/res/menu/menu.xml" value="0.17552083333333332" />
+        <entry key="..\:/ApplicationMVVM/app/src/main/res/xml/provider_paths.xml" value="0.16168478260869565" />
       </map>
     </option>
   </component>

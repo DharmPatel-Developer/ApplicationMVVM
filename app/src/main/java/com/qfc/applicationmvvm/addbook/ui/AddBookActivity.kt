@@ -2,11 +2,12 @@ package com.qfc.applicationmvvm.addbook.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavHostController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.qfc.applicationmvvm.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddBookActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

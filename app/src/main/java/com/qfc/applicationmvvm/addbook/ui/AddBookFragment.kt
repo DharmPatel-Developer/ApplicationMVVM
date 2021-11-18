@@ -2,38 +2,36 @@ package com.qfc.applicationmvvm.addbook.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.view.*
-import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.qfc.applicationmvvm.Contants.Constants
 import com.qfc.applicationmvvm.addbook.db.Book
-import com.qfc.applicationmvvm.addbook.db.BookDatabase
 import com.qfc.applicationmvvm.databinding.FragmentAddBookBinding
-import com.qfc.applicationmvvm.enable
 import com.qfc.applicationmvvm.toast
 import kotlinx.coroutines.launch
 import com.qfc.applicationmvvm.R
+import com.qfc.applicationmvvm.addbook.viewmodel.BookViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
-
+@AndroidEntryPoint
 class AddBookFragment : BaseFragment() {
 
     private lateinit var binding: FragmentAddBookBinding
+    private val bookViewModel: BookViewModel by viewModels()
+
 
     private var book:Book? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
 
         binding = FragmentAddBookBinding.inflate(inflater)
         setHasOptionsMenu(true)
-        return binding.root//inflater.inflate(R.layout.fragment_add_book, container, false)
+        return binding.root
     }
 
 
@@ -51,11 +49,11 @@ class AddBookFragment : BaseFragment() {
             setTitle("Are you sure?")
             setMessage("You cannot undo this operation")
             setPositiveButton("Yes"){_, _ ->
-                launch {
-                    BookDatabase(requireActivity()).getBookDao().deleteBook(book!!)
-                    val action = AddBookFragmentDirections.actionSaveBook()
-                    Navigation.findNavController(binding.root).navigate(action)
-                }
+
+                bookViewModel.delete(book!!)
+                val action = AddBookFragmentDirections.actionSaveBook()
+                Navigation.findNavController(binding.root).navigate(action)
+                context.toast("Record Delete")
             }
             setNegativeButton("No"){_, _ ->
 
@@ -83,16 +81,6 @@ class AddBookFragment : BaseFragment() {
             }
         }
 
-     /*   binding.mobileNo.addTextChangedListener {
-
-            val name = binding.name.text.toString().trim()
-            val bookName = binding.bookList.selectedItem.toString()
-
-            binding.buttonSave.enable(name.isNotEmpty() && it.toString().isNotEmpty()
-                    && it.toString().length == 10 && bookName != Constants.SELECT)
-
-
-        }*/
 
         binding.buttonSave.setOnClickListener {view ->
 
@@ -106,7 +94,7 @@ class AddBookFragment : BaseFragment() {
                 return@setOnClickListener
             }
 
-            if(mobileNo.isEmpty()){
+            if(mobileNo.isEmpty() || mobileNo.length < 10){
                 binding.mobileNo.error = "Mobile No Required"
                 binding.mobileNo.requestFocus()
                 return@setOnClickListener
@@ -114,6 +102,7 @@ class AddBookFragment : BaseFragment() {
 
             if(bookName == Constants.SELECT){
                 binding.bookList.requestFocus()
+                requireActivity().toast("Please Select Book")
                 return@setOnClickListener
             }
 
@@ -122,12 +111,15 @@ class AddBookFragment : BaseFragment() {
                 context?.let {
 
                     if(book == null){
-                        BookDatabase(requireActivity()).getBookDao().addBook(mbook)
+
+                        bookViewModel.insert(mbook)
                         it.toast("Book Saved")
 
                     }else{
                         mbook.id = book!!.id
-                        BookDatabase(requireActivity()).getBookDao().updateBook(mbook)
+                        bookViewModel.update(mbook)
+
+
                         it.toast("Book Updated")
 
                     }
