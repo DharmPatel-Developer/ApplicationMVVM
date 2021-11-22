@@ -15,7 +15,6 @@ interface TodoApi {
 
     companion object{
 
-        private const val URL = "https://jsonplaceholder.typicode.com/"
         operator fun invoke(): TodoApi {
            return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
